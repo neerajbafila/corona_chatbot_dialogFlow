@@ -54,7 +54,7 @@ def processRequest(req):
     city_name = result.get('geo-city')
     user_email = result.get('user_email')
     from_name = params['gmail_user']
-    intent = result.get('displayName')
+    intent = result.get("intent").get('displayName')
 
     if intent == 'covid-19_BasicInfo':
 
