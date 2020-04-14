@@ -58,7 +58,3 @@ class EmailSender():
 
         # terminating the session
         self.smtp.quit()
-
-email_user = 'neerajbafila@gmail.com'
-ob = EmailSender()
-ob.send_email_to_student(email_user, 'nnnn')
