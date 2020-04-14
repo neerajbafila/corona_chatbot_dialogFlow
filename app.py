@@ -27,6 +27,7 @@ mail = Mail(app)
 @app.route('/', methods=['POST'])
 def webhook():
     req = request.get_json(silent=True, force=True)
+    print(req)
 
     # response variable
 
@@ -49,18 +50,27 @@ def processRequest(req):
     user_email = result.get('user_email')
     from_name = params['gmail_user']
     intent = result.get('displayName')
-
-    if intent == 'covid-19_BasicInfo':
-
-        mail.send_message(sender=from_name, recipients=user_email,
+    mail.send_message(sender=from_name, recipients=user_email,
                           body="Hello this is testing")
-        fulfillmentText = "We have sent the course syllabus and other relevant details to you via email." \
+    fulfillmentText = "We have sent the course syllabus and other relevant details to you via email." \
                           " An email has been" \
                           " sent to the Support Team with your contact information, you'll be " \
                           "contacted soon. Do you have further queries?"
-        return {
+     return {
             "fulfillmentText": fulfillmentText
-        }
+     }
+
+#     if intent == 'covid-19_BasicInfo':
+
+#         mail.send_message(sender=from_name, recipients=user_email,
+#                           body="Hello this is testing")
+#         fulfillmentText = "We have sent the course syllabus and other relevant details to you via email." \
+#                           " An email has been" \
+#                           " sent to the Support Team with your contact information, you'll be " \
+#                           "contacted soon. Do you have further queries?"
+#         return {
+#             "fulfillmentText": fulfillmentText
+#         }
         
 
 
