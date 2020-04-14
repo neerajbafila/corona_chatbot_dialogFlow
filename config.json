@@ -10,7 +10,9 @@
           "blog_name":"Tech Blog",
           "tag_line":"Write your Blog!!",
           "gmail_user":"neerajkiller10@gmail.com",
-          "gmail_pass":"26031995"
+          "gmail_pass":"26031995",
+          "EMAIL_SUBJECT":"Query regarding corona virus"
+
         }
 
 }
