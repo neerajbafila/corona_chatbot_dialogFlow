@@ -33,7 +33,7 @@ class EmailSender():
             body=message
 
             # attach the body with the msg instance
-            # self.msg.attach(MIMEText(body, 'html'))
+            self.msg.attach(MIMEText(body))
 
 
             # instance of MIMEBase and named as p
