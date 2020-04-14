@@ -51,6 +51,7 @@ class EmailSender():
 
         # Converts the Multipart msg into a string
         self.text = self.msg.as_string()
+        self.text = """Test msg"""
 
         # sending the mail
         self.smtp.sendmail(self.msg['From'], user_email, self.text)
