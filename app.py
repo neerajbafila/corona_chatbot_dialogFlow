@@ -23,8 +23,8 @@ mail = Mail(app)
 
 
 # geting and sending response to dialogflow
-@app.route('/webhook', methods=['POST', 'GET'])
-@app.route('/', methods=['POST', 'GET'])
+@app.route('/webhook', methods=['POST'])
+@app.route('/', methods=['POST'])
 def webhook():
     req = request.get_json(silent=True, force=True)
 
