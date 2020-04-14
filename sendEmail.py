@@ -22,7 +22,7 @@ class EmailSender():
             self.msg['From'] = self.params['gmail_user']
 
             # storing the receivers email address
-            self.msg['To'] = ",".join(user_email)
+            self.msg['To'] = user_email
 
 
             # storing the subject
