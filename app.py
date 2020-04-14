@@ -58,7 +58,10 @@ def processRequest(req):
                           " An email has been" \
                           " sent to the Support Team with your contact information, you'll be " \
                           "contacted soon. Do you have further queries?"
-        return fulfillmentText
+        return {
+            "fulfillmentText": fulfillmentText
+        }
+        
 
 
 if __name__ == '__main__':
