@@ -51,7 +51,7 @@ def processRequest(req):
     from_name = params['gmail_user']
     intent = result.get('displayName')
 #     mail.send_message(sender=from_name, recipients=user_email,
-                          body="Hello this is testing")
+#                           body="Hello this is testing")
     fulfillmentText = "We have sent the course syllabus and other relevant details to you via email." \
                           " An email has been" \
                           " sent to the Support Team with your contact information, you'll be " \
