@@ -56,9 +56,10 @@ def processRequest(req):
                           " An email has been" \
                           " sent to the Support Team with your contact information, you'll be " \
                           "contacted soon. Do you have further queries?"
-     return {
+ 
+    return {
             "fulfillmentText": fulfillmentText
-     }
+    }
 
 #     if intent == 'covid-19_BasicInfo':
 
