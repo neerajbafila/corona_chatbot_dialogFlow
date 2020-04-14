@@ -25,11 +25,12 @@ mail = Mail(app)
 @app.route('/webhook', methods=['POST'])
 @app.route('/', methods=['POST', 'GET'])
 def webhook():
-    req = request.get_json(silent=True, force=True)
+    # req = request.get_json(silent=True, force=True)
 
     # response variable
 
-    res = processRequest(req)
+    # res = processRequest(req)
+    return ('test')
 
 
 def processRequest(req):
@@ -51,7 +52,7 @@ def processRequest(req):
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)
     # port = int(os.getenv('PORT', 5000))
     # print("Starting app on port %d" % port)
     # app.run(debug=False, port=port, host='0.0.0.0')
