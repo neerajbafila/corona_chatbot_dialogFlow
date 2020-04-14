@@ -37,7 +37,7 @@ class EmailSender():
 
 
             # instance of MIMEBase and named as p
-            self.p = MIMEBase('application', 'octet-stream')
+#             self.p = MIMEBase('application', 'octet-stream')
 
 
             # creates SMTP session
