@@ -43,7 +43,7 @@ def processRequest(req):
 
     session_id = req.get('responseId')
 
-    result = session_id.get('queryResult')
+    result = req.get('queryResult')
     user_name = result.get('user_name')
     city_name = result.get('geo-city')
     user_email = result.get('user_email')
