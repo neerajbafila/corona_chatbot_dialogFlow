@@ -1,4 +1,5 @@
 from flask import Flask, request, make_response
+import os
 from flask_mail import Mail
 import json
 from logger import logger
@@ -22,7 +23,7 @@ mail = Mail(app)
 
 
 # geting and sending response to dialogflow
-@app.route('/webhook', methods=['POST'])
+@app.route('/webhook', methods=['POST', 'GET'])
 @app.route('/', methods=['POST', 'GET'])
 def webhook():
     # req = request.get_json(silent=True, force=True)
@@ -53,8 +54,8 @@ def processRequest(req):
 
 if __name__ == '__main__':
     app.run(debug=True)
-    # port = int(os.getenv('PORT', 5000))
-    # print("Starting app on port %d" % port)
-    # app.run(debug=False, port=port, host='0.0.0.0')
+    port = int(os.getenv('PORT', 5000))
+    print("Starting app on port %d" % port)
+    app.run(debug=False, port=port, host='0.0.0.0')
 
 
