@@ -50,7 +50,7 @@ def processRequest(req):
     from_name = params['gmail_user']
     intent = result.get('displayName')
 
-    if intent == 'covid-19 _BasicInfo':
+    if intent == 'covid-19_BasicInfo':
 
         mail.send_message(sender=from_name, recipients=user_email,
                           body="Hello this is testing")
