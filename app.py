@@ -34,22 +34,22 @@ def webhook():
     return ('test')
 
 
-def processRequest(req):
+# def processRequest(req):
 
-    session_id = req.get('responseId')
+#     session_id = req.get('responseId')
 
-    result = session_id.get('queryResult')
-    user_name = result.get('user_name')
-    city_name = result.get('geo-city')
-    user_email = result.get('user_email')
-    from_name = params['gmail_user']
-    intent = result.get('displayName')
+#     result = session_id.get('queryResult')
+#     user_name = result.get('user_name')
+#     city_name = result.get('geo-city')
+#     user_email = result.get('user_email')
+#     from_name = params['gmail_user']
+#     intent = result.get('displayName')
 
-    if intent == 'covid-19 _BasicInfo':
+#     if intent == 'covid-19 _BasicInfo':
 
-        mail.send_message(sender=from_name, recipients=user_email,
-                          body="Hello this is testing")
-        return ("testing")
+#         mail.send_message(sender=from_name, recipients=user_email,
+#                           body="Hello this is testing")
+#         return ("testing")
 
 
 if __name__ == '__main__':
