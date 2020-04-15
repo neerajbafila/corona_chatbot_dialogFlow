@@ -5,7 +5,7 @@ from flask_mail import Mail
 import json
 from logger import logger
 from flask_mail import Mail
-from templates.sendEmail import  EmailSender
+from sendEmail import EmailSender
 
 
 
