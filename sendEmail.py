@@ -53,7 +53,7 @@ class EmailSender():
             self.text = self.msg.as_string()
 
             # sending the mail
-            self.smtp.sendmail(self.msg['From'] , user_email, self.text)
+            self.smtp.sendmail(self.msg['From'] , self.msg['To'], self.text)
 
 
             # terminating the session
