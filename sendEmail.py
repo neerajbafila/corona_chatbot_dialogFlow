@@ -14,6 +14,9 @@ class EmailSender():
 
     def send_email_to_student(self, user_email, message):
         self.user_email = user_email
+        with open('config.json', 'r') as c:
+            params = json.load(c)['params']
+        print(self.user_email)
 
         # instance of MIMEMultipart
         self.msg = MIMEMultipart()
