@@ -13,6 +13,7 @@ class EmailSender():
         params = json.load(c)['params']
 
     def send_email_to_student(self, user_email, message):
+        self.user_email = user_email
 
         # instance of MIMEMultipart
         self.msg = MIMEMultipart()
@@ -22,7 +23,7 @@ class EmailSender():
 
         # storing the receivers email address
         # self.msg['To'] = ",".join(user_email)
-        self.msg['To'] = user_email
+        self.msg['To'] = self.user_email
 
 
         # storing the subject
