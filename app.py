@@ -53,6 +53,7 @@ def processRequest(req):
     user_name = result.get('user_name')
     city_name = result.get('geo-city')
     user_email = result.get('user_email')
+    print(user_email)
     from_name = params['gmail_user']
     intent = result.get("intent").get('displayName')
 
