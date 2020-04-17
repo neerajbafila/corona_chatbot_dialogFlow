@@ -1,5 +1,5 @@
 FLASK==0.12.2 
-Requests==2.18.4
+Requests==2.20.0
 flask_mail
 logger
 flask_cors
