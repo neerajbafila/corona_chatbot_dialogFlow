@@ -14,7 +14,7 @@ class EmailSender():
     def send_email_to_user(self, user_email, message, city_name):
         try:
             self.message = str(message)
-            self.message = "total confirm cases in {} are {}".format(city_name, self.message)
+            # self.message = "total confirm cases in {} are {}".format(city_name, self.message)
             self.user_email = user_email
 
             # instance of MIMEMultipart
