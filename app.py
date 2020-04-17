@@ -5,8 +5,10 @@ from flask_mail import Mail
 import json
 from logger import logger
 from flask_mail import Mail
+# from templates.sendEmail import EmailSender
+# from templates.CallExternalApi import CallExternalApi
 from sendEmail import EmailSender
-
+from CallExternalApi import CallExternalApi
 
 
 app = Flask(__name__)
@@ -53,7 +55,7 @@ def processRequest(req):
     user_name = parameters.get('user_name')
     city_name = parameters.get('geo-city')
     user_email = parameters.get('user_email')
-    print(user_email)
+    # print(user_email)
     from_name = params['gmail_user']
     intent = result.get("intent").get('displayName')
 
@@ -62,15 +64,22 @@ def processRequest(req):
         # mail.send_message(sender=from_name, recipients=user_email,
         #                   body="Hello this is testing")
 
-        email_message = "Kindly find below details"
+
         email_sender = EmailSender()
-        email_sender.send_email_to_student(user_email, email_message)
-        fulfillmentText = "We have sent the course syllabus and other relevant details to you via email." \
-                          " An email has been" \
-                          " sent to the Support Team with your contact information, you'll be " \
-                          "contacted soon. Do you have further queries?"
+        call_external_api = CallExternalApi()
+
+        fulfillmentText = call_external_api.featch_district_data(city_name)
+        email_message = fulfillmentText['confirmed']
+        print(fulfillmentText)
+        email_sender.send_email_to_user(user_email, email_message, city_name)
+        # fulfillmentText = "We have sent the course syllabus and other relevant details to you via email." \
+        #                   " An email has been" \
+        #                   " sent to the Support Team with your contact information, you'll be " \
+        #                   "contacted soon. Do you have further queries?"
+
+
         return {
-            "fulfillmentText": fulfillmentText
+            "fulfillmentText": fulfillmentText['confirmed']
         }
 
 
