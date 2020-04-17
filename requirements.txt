@@ -3,3 +3,5 @@ Requests==2.18.4
 flask_mail
 logger
 flask_cors
+pandas
+numpy
