@@ -13,6 +13,7 @@ class CallExternalApi():
         }
     response = requests.request("GET", url, headers=headers)
     data = response.json()
+    all_data = data['total_values']
     state_wise_data = pd.DataFrame(data['state_wise'])
     indx = state_wise_data.index
     indx = indx.drop('district')
@@ -50,8 +51,21 @@ class CallExternalApi():
     #                     l.append([self.data['state_wise'][i][j][str_district]])
     #     return dic, l
 
-ob = CallExternalApi()
-temp_1 = ob.featch_state_data('Uttarakhand')
-temp_2 = ob.featch_district_data('Nagpur')
-print(temp_1)
-print(temp_2)
+    def featch_all_India_data(self):
+        total_active = []
+        total_confirm = []
+        total_deaths = []
+        for i in ['active', 'confirmed', 'deaths']:
+            if i == 'active':
+                total_active = self.all_data[i]
+            if i == 'confirmed':
+                total_confirm = self.all_data[i]
+            if i == 'deaths':
+                total_deaths = self.all_data[i]
+        return total_active, total_confirm, total_deaths
+
+# ob = CallExternalApi()
+# temp_1 = ob.featch_state_data('Uttarakhand')
+# temp_2 = ob.featch_district_data('Nagpur')
+# print(temp_1)
+# print(temp_2)

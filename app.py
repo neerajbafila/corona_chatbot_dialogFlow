@@ -44,6 +44,8 @@ def webhook():
     r.headers['Content-Type'] = 'application/json'
     return r
 
+
+"""Filtering data feached by featch_state_data() in CallExternalApi"""
 def featch_data(temp):
     active = []
     confirmed = []
@@ -55,6 +57,22 @@ def featch_data(temp):
     return active, confirmed
 
 
+def data_validation_city_name(city_name):
+    city_name = city_name.lower()
+    city_name = city_name.capitalize()
+    if city_name == "Ahmedabad":
+        city_name = "Ahmadabad"
+    if city_name == "Mehsana":
+        city_name= "Mahesana"
+    return city_name
+
+
+def data_validation_sate_name(state_name):
+    state_name = state_name.lower()
+    state_name = state_name.capitalize()
+    return state_name
+
+
 @app.route('/processRequest', methods=['POST'])
 def processRequest(req):
 
@@ -64,8 +82,12 @@ def processRequest(req):
     parameters = result.get("parameters")
     user_name = parameters.get('user_name')
     city_name = parameters.get('city_name')
+    if city_name != None:
+        city_name = data_validation_city_name(city_name)
     user_email = parameters.get('user_email')
     state_name = parameters.get('state_name')
+    if state_name != None:
+        state_name = data_validation_sate_name(state_name)
     # print(user_email)
     from_name = params['gmail_user']
     intent = result.get("intent").get('displayName')
@@ -81,10 +103,14 @@ def processRequest(req):
         print(active)
         print(confirmed)
         fulfillmentText = "{} has {} active cases and {} confirm cases ".format(state_name, active[0], confirmed[0])
-        email_message = fulfillmentText
-        print(fulfillmentText)
-        email_sender = EmailSender()
-        email_sender.send_email_to_user(user_email, email_message, state_name)
+        try:
+            email_message = fulfillmentText
+            print(fulfillmentText)
+            email_sender = EmailSender()
+            email_sender.send_email_to_user(user_email, email_message, state_name)
+
+        except Exception as e:
+            print('the exception is '+str(e))
 
         return {
             "fulfillmentText": fulfillmentText
@@ -97,11 +123,23 @@ def processRequest(req):
         call_external_api = CallExternalApi()
 
         fulfillmentText = call_external_api.featch_district_data(city_name)
-        fulfillmentText = "total confirm cases in {} are {}".format(city_name, fulfillmentText['confirmed'])
+        if len(fulfillmentText)==0:
+            fulfillmentText = "total confirm cases in {} are 0".format(city_name)
+        else:
+            fulfillmentText = "total confirm cases in {} are {}".format(city_name, fulfillmentText['confirmed'])
         email_message = fulfillmentText
         email_sender = EmailSender()
         email_sender.send_email_to_user(user_email, email_message, city_name)
 
+        return {
+            "fulfillmentText": fulfillmentText
+        }
+
+    if intent == "All_India_data":
+        call_external_api = CallExternalApi()
+        total_active, total_confirm, total_deaths= call_external_api.featch_all_India_data()
+        fulfillmentText = "total active cases in India are {}, total confirmed cases are {} " \
+                          "total deaths till now {} ".format(total_active, total_confirm, total_deaths)
         return {
             "fulfillmentText": fulfillmentText
         }
@@ -112,6 +150,6 @@ if __name__ == '__main__':
 
     port = int(os.getenv('PORT', 5000))
     print("Starting app on port %d" % port)
-    app.run(debug=True, port=port, host='0.0.0.0')
+    app.run(debug=False, port=port, host='0.0.0.0')
 
 
