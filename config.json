@@ -1,7 +1,7 @@
 {
   "params":
         {
-          "local_server":"True",
+          
           "local_uri":"mongodb://localhost:27017/BlogDatabase",
           "prod_uri":"mongodb://localhost:27017/BlogDatabase",
           "fb_url":"https://facebook.com/neerajbafila",
@@ -9,8 +9,8 @@
           "git_url":"https://github.com/neerajbafila",
           "blog_name":"Tech Blog",
           "tag_line":"Write your Blog!!",
-          "gmail_user":"neerajkiller@gmail.com",
-          "gmail_pass":"123456",
+          "gmail_user":"abc@gmail.com",
+          "gmail_pass":"abcd",
           "EMAIL_SUBJECT":"Query regarding corona virus"
 
         }
